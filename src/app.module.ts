@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ExceptionController } from './exception/exception.controller';
 import configuration from './config/configuration';
 
 @Module({
@@ -22,7 +23,7 @@ import configuration from './config/configuration';
     AuthModule,
     UserModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, ExceptionController],
   providers: [AppService],
 })
 export class AppModule {}
