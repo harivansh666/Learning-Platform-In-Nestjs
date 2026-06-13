@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, Res } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
@@ -17,6 +17,7 @@ export class UserService {
         password: createUserDto.password,
         role: Role.STUDENT,
       });
+
       return user;
     } catch (error: unknown) {
       const e = error as { code?: number };
@@ -26,5 +27,8 @@ export class UserService {
       }
       throw error;
     }
+  }
+  async findByEmail(email: string) {
+    return await this.userModel.findOne({ email });
   }
 }
